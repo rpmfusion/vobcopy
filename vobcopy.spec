@@ -1,13 +1,12 @@
 Summary: Utility to copy DVD .vob files to disk
 Name: vobcopy
-Version: 1.1.1
+Version: 1.1.2
 Release: 2%{?dist}
 License: GPLv2+
 Group: Applications/Multimedia
 URL: http://vobcopy.org/projects/c/c.shtml
 Source: http://vobcopy.org/download/vobcopy-%{version}.tar.bz2
 Patch0: vobcopy-1.0.1-Makefile.patch
-Patch1: vobcopy-1.1.1-gcc43.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdvdread-devel
 
@@ -22,7 +21,6 @@ matter much.
 %prep
 %setup -q
 %patch0 -p1 -b .Makefile
-%patch1 -p1 -b .gcc43
 
 
 %build
@@ -45,7 +43,7 @@ matter much.
 
 %files
 %defattr(-,root,root,-)
-%doc Changelog FAQ README THANKS TODO
+%doc Changelog README Release-Notes TODO
 %doc alternative_programs.txt
 %{_bindir}/vobcopy
 %{_mandir}/man1/vobcopy.1*
@@ -53,6 +51,10 @@ matter much.
 
 
 %changelog
+* Sun Oct 19 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.1.2-1
+- Update to 1.1.2
+- drop vobcopy-1.1.1-gcc43.patch
+
 * Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.1.1-2
 - rebuild for RPM Fusion
 
