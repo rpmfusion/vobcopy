@@ -1,0 +1,19 @@
+diff -Naupr vobcopy-1.2.0.orig/Makefile vobcopy-1.2.0/Makefile
+--- vobcopy-1.2.0.orig/Makefile	2009-06-08 22:06:33.000000000 +0200
++++ vobcopy-1.2.0/Makefile	2010-08-11 23:27:09.742064989 +0200
+@@ -8,12 +8,11 @@ CC     ?= gcc
+ #BINDIR = ${PREFIX}/bin
+ #MANDIR = ${PREFIX}/man
+ PREFIX += /usr/local
+-BINDIR = ${PREFIX}/bin
+-MANDIR = ${PREFIX}/man
++BINDIR ?= ${PREFIX}/bin
++MANDIR ?= ${PREFIX}/man
+ DOCDIR = ${PREFIX}/share/doc/vobcopy
+ LFS    = -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+-CFLAGS += -I/usr/local//include
+-LDFLAGS += -ldvdread -L/usr/local//lib
++LDFLAGS += -ldvdread
+ 
+ #This specifies the conversion from .c to .o 
+ .c.o:
