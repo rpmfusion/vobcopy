@@ -1,12 +1,12 @@
 Summary: Utility to copy DVD .vob files to disk
 Name: vobcopy
-Version: 1.1.2
-Release: 3%{?dist}
+Version: 1.2.0
+Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/Multimedia
-URL: http://vobcopy.org/projects/c/c.shtml
+URL: http://vobcopy.org/
 Source: http://vobcopy.org/download/vobcopy-%{version}.tar.bz2
-Patch0: vobcopy-1.0.1-Makefile.patch
+Patch0: vobcopy-1.2.0-Makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdvdread-devel
 
@@ -33,8 +33,11 @@ matter much.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install \
-    BINDIR="%{buildroot}%{_bindir}" \
-    MANDIR="%{buildroot}%{_mandir}"
+    DESTDIR="%{buildroot}" \
+    BINDIR="%{_bindir}" \
+    MANDIR="%{_mandir}"
+# Remove the docs we include ourselves as %%doc
+%{__rm} -rf %{buildroot}/usr/local/share/doc
 
 
 %clean
@@ -43,7 +46,7 @@ matter much.
 
 %files
 %defattr(-,root,root,-)
-%doc Changelog README Release-Notes TODO
+%doc COPYING Changelog README Release-Notes TODO
 %doc alternative_programs.txt
 %{_bindir}/vobcopy
 %{_mandir}/man1/vobcopy.1*
@@ -51,6 +54,9 @@ matter much.
 
 
 %changelog
+* Wed Aug 11 2010 Matthias Saou <http://freshrpms.net/> 1.2.0-1
+- Update to 1.2.0 (#1051).
+
 * Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.1.2-3
 - rebuild for new F11 features
 
