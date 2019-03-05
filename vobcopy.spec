@@ -3,11 +3,11 @@ Name: vobcopy
 Version: 1.2.0
 Release: 11%{?dist}
 License: GPLv2+
-Group: Applications/Multimedia
 URL: http://vobcopy.org/
 Source: http://vobcopy.org/download/vobcopy-%{version}.tar.bz2
 Patch0: vobcopy-1.2.0-Makefile.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gcc
 BuildRequires: libdvdread-devel
 
 %description
@@ -31,7 +31,6 @@ matter much.
 
 
 %install
-%{__rm} -rf %{buildroot}
 %{__make} install \
     DESTDIR="%{buildroot}" \
     BINDIR="%{_bindir}" \
@@ -40,14 +39,10 @@ matter much.
 %{__rm} -rf %{buildroot}/usr/local/share/doc
 
 
-%clean
-%{__rm} -rf %{buildroot}
-
-
 %files
-%defattr(-,root,root,-)
-%doc COPYING Changelog README Release-Notes TODO
+%doc Changelog README Release-Notes TODO
 %doc alternative_programs.txt
+%license COPYING
 %{_bindir}/vobcopy
 %{_mandir}/man1/vobcopy.1*
 %lang(de) %{_mandir}/de/man1/vobcopy.1*
