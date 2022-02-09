@@ -1,7 +1,7 @@
 Summary: Utility to copy DVD .vob files to disk
 Name: vobcopy
 Version: 1.2.0
-Release: 18%{?dist}
+Release: 19%{?dist}
 License: GPLv2+
 URL: http://vobcopy.org/
 Source: http://vobcopy.org/download/vobcopy-%{version}.tar.bz2
@@ -49,6 +49,9 @@ matter much.
 
 
 %changelog
+* Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.2.0-19
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
 * Tue Aug 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 1.2.0-18
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
