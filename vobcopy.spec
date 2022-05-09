@@ -1,13 +1,14 @@
 Summary: Utility to copy DVD .vob files to disk
-Name: vobcopy
-Version: 1.2.0
-Release: 19%{?dist}
+Name:    vobcopy
+Version: 1.2.1
+Release: 1%{?dist}
 License: GPLv2+
-URL: http://vobcopy.org/
-Source: http://vobcopy.org/download/vobcopy-%{version}.tar.bz2
-Patch0: vobcopy-1.2.0-Makefile.patch
+URL:     http://vobcopy.org/
+Source:  https://github.com/barak/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires: automake
 BuildRequires: gcc
+BuildRequires: gettext-devel
 BuildRequires: libdvdread-devel
 
 %description
@@ -20,23 +21,18 @@ matter much.
 
 %prep
 %setup -q
-%patch0 -p1 -b .Makefile
+autoreconf -fiv
 
 
 %build
-%{__make} \
-    CFLAGS="%{optflags}" \
-    BINDIR="%{_bindir}" \
-    MANDIR="%{_mandir}"
+%configure
+%make_build
 
 
 %install
-%{__make} install \
-    DESTDIR="%{buildroot}" \
-    BINDIR="%{_bindir}" \
-    MANDIR="%{_mandir}"
+%make_install
 # Remove the docs we include ourselves as %%doc
-%{__rm} -rf %{buildroot}/usr/local/share/doc
+rm -rf %{buildroot}%{_datadir}/doc
 
 
 %files
@@ -49,6 +45,9 @@ matter much.
 
 
 %changelog
+* Mon May 09 2022 Leigh Scott <leigh123linux@gmail.com> - 1.2.1-1
+- Update to 1.2.1
+
 * Wed Feb 09 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.2.0-19
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
